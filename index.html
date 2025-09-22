@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Personal Site</title>
+  <meta name="description" content="Personal website of Your Name: about, research, and CV." />
+  <style>
+    /* ====== Base & Theme Variables ====== */
+    :root {
+      --bg: #0b0b0d;
+      --bg-muted: #131318;
+      --text: #e7e7ea;
+      --text-muted: #b8b8c2;
+      --accent: #7aa2f7; /* soft blue */
+      --card: #15151b;
+      --border: #262631;
+      --link: var(--accent);
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+      --content-max: 900px;
+    }
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --bg-muted: #fafafa;
+      --text: #1a1b1e;
+      --text-muted: #505565;
+      --accent: #275efe;
+      --card: #ffffff;
+      --border: #e8e8ef;
+      --link: var(--accent);
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+    /* Optional: follow system if user selects "Auto" */
+    @media (prefers-color-scheme: light) {
+      [data-theme="auto"] { /* variables adjust automatically */ }
+    }
+
+    /* ====== Resets ====== */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 100% -20%, rgba(39, 94, 254, .08), transparent 50%), var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    /* ====== Layout ====== */
+    .container { max-width: var(--content-max); margin: 0 auto; padding: 24px; }
+    header {
+      position: sticky; top: 0; z-index: 5;
+      backdrop-filter: saturate(120%) blur(8px);
+      background: color-mix(in oklab, var(--bg) 90%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex; align-items: center; gap: 16px; justify-content: space-between;
+      padding: 12px 24px;
+    }
+    .brand { font-weight: 700; letter-spacing: .2px; }
+    nav a { color: var(--text-muted); text-decoration: none; padding: 8px 10px; border-radius: 10px; }
+    nav a:hover, nav a:focus { color: var(--text); background: var(--bg-muted); outline: none; }
+
+    .theme-picker {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 10px; border: 1px solid var(--border); border-radius: 12px; background: var(--card);
+    }
+    select.theme-select { background: transparent; color: var(--text); border: none; outline: none; }
+
+    .hero {
+      display: grid; gap: 24px; grid-template-columns: 140px 1fr; align-items: center;
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; box-shadow: var(--shadow); margin-top: 24px;
+    }
+    .avatar {
+      width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border);
+    }
+
+    section { margin-top: 48px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 24px;
+    }
+    h1, h2, h3 { line-height: 1.2; margin: 0 0 8px; }
+    h2 { font-size: 1.4rem; }
+    p { margin: 0 0 12px; color: var(--text); }
+    .muted { color: var(--text-muted); }
+    ul { margin: 8px 0 0 18px; }
+
+    .footer { margin: 64px 0 24px; color: var(--text-muted); font-size: .95rem; text-align: center; }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-link:focus { left: 8px; top: 8px; width: auto; height: auto; padding: 8px 10px; background: var(--bg-muted); border-radius: 10px; }
+
+    @media (max-width: 640px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero .avatar { margin: 0 auto; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#about" class="skip-link">Skip to content</a>
+  <header>
+    <div class="nav container">
+      <div class="brand">Your Name</div>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#cv">CV</a>
+      </nav>
+      <div class="theme-picker" aria-label="Theme picker">
+        <span class="muted" id="theme-label">Theme</span>
+        <select id="theme-select" class="theme-select" aria-labelledby="theme-label">
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="auto">Auto</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about" class="hero" aria-labelledby="about-heading">
+      <img class="avatar" src="assets/me.jpg" alt="Portrait of Your Name" />
+      <div>
+        <h1 id="about-heading">Hi, I’m Your Name</h1>
+        <p class="muted">Brief description goes here. For example: I’m a researcher focusing on X and Y. I enjoy building Z and exploring topics in A/B. Currently at Organization — open to collaborations.</p>
+        <p>
+          <a href="#research" style="color: var(--link);">See my research ↓</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="research" class="card" aria-labelledby="research-heading">
+      <h2 id="research-heading">Research</h2>
+      <p class="muted">Add a short overview. Below are a few recent highlights:</p>
+      <ul>
+        <li><strong>Project One</strong> — one‑line description, 2024. <a href="#" aria-label="Project One link">link</a></li>
+        <li><strong>Paper Two</strong> — venue, year. <a href="#">pdf</a> · <a href="#">code</a></li>
+        <li><strong>Talk Three</strong> — event, year. <a href="#">slides</a></li>
+      </ul>
+    </section>
+
+    <section id="cv" class="card" aria-labelledby="cv-heading">
+      <h2 id="cv-heading">CV</h2>
+      <p>Download my CV as a PDF: <a href="assets/cv.pdf">cv.pdf</a></p>
+      <p class="muted">Tip: keep the file named <code>cv.pdf</code> in the <code>assets/</code> folder so the link stays stable.</p>
+    </section>
+
+    <p class="footer">© <span id="year"></span> Your Name. Built with ♥ and GitHub Pages.</p>
+  </main>
+
+  <script>
+    // ====== Year stamp ======
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ====== Theme handling ======
+    const root = document.documentElement;
+    const select = document.getElementById('theme-select');
+
+    function applyTheme(mode) {
+      // mode: 'dark' | 'light' | 'auto'
+      root.setAttribute('data-theme', mode);
+      localStorage.setItem('theme', mode);
+    }
+
+    // Initialize from saved preference or default to dark
+    const saved = localStorage.getItem('theme') || 'dark';
+    select.value = saved;
+    applyTheme(saved);
+
+    // React to changes
+    select.addEventListener('change', (e) => {
+      applyTheme(e.target.value);
+    });
+
+    // Respect user motion preferences for smooth scroll
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.style.scrollBehavior = 'auto';
+    }
+  </script>
+</body>
+</html>
