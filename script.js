@@ -1,4 +1,4 @@
-// ====== Theme handling ======
+/ ====== Theme handling ======
 (function() {
 const root = document.documentElement;
 const select = document.getElementById('theme-select');
