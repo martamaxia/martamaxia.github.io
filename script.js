@@ -2,6 +2,42 @@
 (function() {
 const root = document.documentElement;
 const select = document.getElementById('theme-select');
+
+
+function applyTheme(mode) {
+root.setAttribute('data-theme', mode);
+try { localStorage.setItem('theme', mode); } catch (_) {}
+}
+
+
+// Set an initial theme ASAP to avoid a flash
+const saved = (function() {
+try { return localStorage.getItem('theme'); } catch (_) { return null; }
+})();
+applyTheme(saved || 'dark');
+
+
+if (select) {
+select.value = saved || 'dark';
+select.addEventListener('change', (e) => applyTheme(e.target.value));
+}
+
+
+// Respect reduced motion
+if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+document.documentElement.style.scrollBehavior = 'auto';
+}
+
+
+// Optional year stamp if present
+const yr = document.getElementById('year');
+if (yr) yr.textContent = new Date().getFullYear();
+})();
+```js
+// ====== Theme handling ======
+(function() {
+const root = document.documentElement;
+const select = document.getElementById('theme-select');
 function applyTheme(mode) {
 root.setAttribute('data-theme', mode);
 try { localStorage.setItem('theme', mode); } catch (_) {}
