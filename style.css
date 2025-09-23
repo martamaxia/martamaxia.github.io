@@ -160,5 +160,22 @@ nav { display: none; }
 
 
 /* ====== Final overrides (ensure these win) ====== */
-.avatar { width: clamp(180px, 28vw, 400px); aspect-ratio: 1 / 1; border-radius: 14px; object-fit: cover; border: 2px solid var(--border); }
-@media (max-width: 720px) { nav.site-nav.open { display: flex !important; } }
+/* Robust circular avatar */
+:root {
+  /* Tweak these to change size */
+  --avatar-min: 160px;
+  --avatar-fluid: 24vw;
+  --avatar-max: 240px;
+}
+
+.avatar {
+  /* Keep it square */
+  width: clamp(var(--avatar-min), var(--avatar-fluid), var(--avatar-max));
+  height: clamp(var(--avatar-min), var(--avatar-fluid), var(--avatar-max)); /* fallback */
+  aspect-ratio: 1 / 1;             /* modern browsers ensure square even if height is auto */
+  border-radius: 50%;               /* the circle */
+  object-fit: cover;                /* crop to fill the circle */
+  object-position: 50% 50%;         /* adjust framing if needed (e.g., 50% 40% to nudge up) */
+  display: block;                   /* avoid inline gaps */
+  border: 2px solid var(--border);  /* optional outline */
+}
