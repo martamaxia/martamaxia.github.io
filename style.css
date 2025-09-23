@@ -1,4 +1,11 @@
 /* ====== Theme Variables ====== */
+--card: #15151b;
+--border: #262631;
+--link: var(--accent);
+--shadow: 0 10px 30px rgba(0,0,0,.25);
+--radius: 16px;
+--content-max: 900px;
+}
 [data-theme="light"] {
 --bg: #ffffff;
 --bg-muted: #fafafa;
