@@ -160,9 +160,5 @@ nav { display: none; }
 
 
 /* ====== Final overrides (ensure these win) ====== */
-.avatar {
-  width: clamp(160px, 24vw, 240px);
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  border: 2px solid var(--border);
-}
+.avatar { width: clamp(160px, 24vw, 240px); aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+@media (max-width: 720px) { nav.site-nav.open { display: flex !important; } }
