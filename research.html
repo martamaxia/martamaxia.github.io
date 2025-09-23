@@ -6,11 +6,16 @@
 <title>Marta Maxia — Research</title>
 <meta name="description" content="Research by Marta Maxia: projects, publications, talks." />
 <script>
-try {
-  document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark')
-} catch(e) {
-  document.documentElement.setAttribute('data-theme', 'dark')
-}
+  (function () {
+    try {
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = stored || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
 </script>
 <link rel="stylesheet" href="style.css" />
 </head>
@@ -18,20 +23,14 @@ try {
 <a href="#main" class="skip-link">Skip to content</a>
 <header>
 <div class="nav container">
-<div class="brand">Marta Maxia</div>
-<nav aria-label="Primary">
+<a class="brand" href="index.html">Marta Maxia</a>
+<button id="nav-toggle" class="icon-button" aria-label="Toggle menu" aria-expanded="false">☰</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary">
 <a href="index.html">About</a>
 <a href="research.html" aria-current="page">Research</a>
 <a href="cv.html">CV</a>
 </nav>
-<div class="theme-picker" aria-label="Theme picker">
-<span class="muted" id="theme-label">Theme</span>
-<select id="theme-select" class="theme-select" aria-labelledby="theme-label">
-<option value="dark">Dark</option>
-<option value="light">Light</option>
-<option value="auto">Auto</option>
-</select>
-</div>
+<button id="theme-toggle" class="icon-button" aria-label="Switch theme" title="Toggle dark/light">🌙</button>
 </div>
 </header>
 
